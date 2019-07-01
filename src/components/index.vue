@@ -3,8 +3,8 @@
     <div class="column is-full">
     <div class="field">
       <div class="control has-icons-right">
-        <input class="input is-half" type="email" placeholder="username" v-model="userName" v-on:keyup.enter.once="fetchUserData">
-        <span class="icon is-small is-right" v-if="userName !=''" @click.once="fetchUserData">
+        <input class="input is-half" type="email" placeholder="username" v-model="userName" v-on:keyup.enter="fetchUserData">
+        <span class="icon is-small is-right" v-if="userName !=''" @click="fetchUserData">
           <i class="fas fa-search"></i>
         </span>
       </div>
@@ -23,8 +23,9 @@
         <p>{{item.name}}</p>
       </div>
       <div class="message-body">
+        <p class="title is-5">Description</p>
         <p>
-            {{item.description!=null ? item.description:"This repo doesn't have a readme"}}
+            {{item.description!=null ? item.description:"This repo doesn't have a description"}}
         </p>
         <br>
         <p>

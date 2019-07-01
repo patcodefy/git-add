@@ -3,7 +3,7 @@
     <index></index>
   </div>
 </template>
-<<script src='main.js'></script>>
+<script src='main.js'></script>>
 <script>
 import index from './components/index.vue'
 export default {
