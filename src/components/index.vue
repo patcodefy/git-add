@@ -1,6 +1,9 @@
 <template>
   <div class="columns is-mobile is-centered">
     <div class="column is-full">
+      <div class="field title is-4 git">
+        GIT-DOT
+      </div>
       <div class="field">
         <div class="control has-icons-right">
           <input class="input is-half" type="email" placeholder="username" v-model="userName" v-on:keyup.enter="fetchUserData">
@@ -102,5 +105,8 @@ export default {
   .field{
   width: 40%;
   margin-left: 30%;
+  }
+  .git{
+    color: white;
   }
 </style>
