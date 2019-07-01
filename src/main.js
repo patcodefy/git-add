@@ -5,7 +5,6 @@ import Bulma from 'bulma'
 import Swal from 'sweetalert'
 Vue.prototype.axios = Axios
 Vue.use(Bulma)
-
 Vue.prototype.swal = Swal
 Vue.config.productionTip = false
 
