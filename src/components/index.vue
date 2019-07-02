@@ -36,7 +36,7 @@
             <time>{{convertDate(item.updated_at)}}</time>
           </p>
           <br>
-          <a class="button is-info">
+          <a class="button is-info" v-bind:href="item.html_url">
           <i class="fab fa-github"></i>
           <span> &nbsp;Source</span>
           </a>
