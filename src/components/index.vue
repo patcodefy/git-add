@@ -6,7 +6,7 @@
       </div>
       <div class="field">
         <div class="control has-icons-right">
-          <input class="input is-half" type="email" placeholder="username" v-model="userName" v-on:keyup.enter="fetchUserData">
+          <input class="input is-half" type="email" placeholder="Github username" v-model="userName" v-on:keyup.enter="fetchUserData">
           <span class="icon is-small is-right" v-if="userName !=''" @click="fetchUserData">
           <i class="fas fa-search"></i>
           </span>
@@ -21,7 +21,7 @@
         <p class="title is-4">List of Repos</p>
       </div>
       <br>
-      <article class="message is-info" v-for="item in userData"     :key="item.id">
+      <article class="message is-info" v-for="(item, index) in userData"        :key="index">
         <div class="message-header">
           <p>{{item.name}}</p>
         </div>
@@ -40,10 +40,11 @@
           <i class="fab fa-github"></i>
           <span> &nbsp;Source</span>
           </a>
-        </div>
+          <p >{{lang[index] !=null ? lang[index]:"No languages found"}}</p>
+          </div>
       </article>
     </div>
-  </div>
+    </div>
 </template>
 <script>
 export default {
@@ -51,6 +52,8 @@ export default {
     return {
       userName: '',
       userData: '',
+      repoLanguage: [],
+      lang: [],
       profile: {
         name: '',
         image: ''
@@ -65,8 +68,10 @@ export default {
           vm.userData = response.data
           vm.profile.image = vm.userData[0].owner.avatar_url
           vm.profile.name = vm.userData[0].owner.login
+          vm.getLang()
         })
         .catch((e) => {
+          // eslint-disable-next-line
           swal({
             title: 'Oops!',
             text: 'Ooops!!! User not found',
@@ -77,8 +82,30 @@ export default {
           })
         })
     },
+    getLang () {
+      let vm = this
+      vm.userData.forEach(repo => {
+        vm.axios.get('https://api.github.com/repos/' + vm.userName + '/' + repo.name + '/languages').then((languages) => {
+          vm.repoLanguage.push(Object.keys(languages.data))
+          let fullLanguage = ''
+          vm.repoLanguage.forEach(lang => {
+            lang.forEach(l => {
+              fullLanguage = fullLanguage + l + ', '
+            })
+            console.log(fullLanguage)
+            vm.lang.push(fullLanguage)
+            fullLanguage = ''
+          })
+        }).catch((error) => {
+          console.log(error)
+        })
+      })
+    },
+    // eslint-disable-next-line
     convertDate: date => moment(date).format('LLL')
   }
+  // Continue list languages for each project
+  // TODO small activity drop down last year, last 4 weeks,
 }
 </script>
 <style scoped>
