@@ -33,7 +33,7 @@
           <br>
           <p>
             Last Updated at:
-            <time>{{convertDate(item.updated_at)}}</time>
+            <time>{{convertDate(item.updated_at)|ago}}</time>
           </p>
           <br>
           <a class="button is-info" v-bind:href="item.html_url" target="_blank">
@@ -59,6 +59,10 @@ export default {
         image: ''
       }
     }
+  },
+  filters: {
+    // eslint-disable-next-line
+    ago: date => moment(date).fromNow()
   },
   methods: {
     fetchUserData () {
@@ -104,8 +108,6 @@ export default {
     // eslint-disable-next-line
     convertDate: date => moment(date).format('LLL')
   }
-  // Continue list languages for each project
-  // TODO small activity drop down last year, last 4 weeks,
 }
 </script>
 <style scoped>
