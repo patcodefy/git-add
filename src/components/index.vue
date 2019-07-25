@@ -6,7 +6,12 @@
       </div>
       <div class="field">
         <div class="control has-icons-right">
-          <input class="input is-half" type="email" placeholder="Github username" v-model="userName" v-on:keyup.enter="fetchUserData">
+          <input class="input is-half" 
+            type="email" 
+            placeholder="Github username" 
+            v-model="userName" 
+            v-on:keyup.enter="fetchUserData"
+          >
           <span class="icon is-small is-right" v-if="userName !=''" @click="fetchUserData">
           <i class="fas fa-search"></i>
           </span>
@@ -18,7 +23,8 @@
         </p>
         <p class="subtitle">{{profile.name}}</p>
         <br>
-        <p class="title is-4">List of Repos</p>
+        <p class="title is-4">List of Public Repos</p>
+        <span class="helper">Total repos: {{total}}</span>
       </div>
       <br>
       <article class="message is-info" v-for="(item, index) in userData"        :key="index">
@@ -57,7 +63,8 @@ export default {
       profile: {
         name: '',
         image: ''
-      }
+      },
+      total:0,
     }
   },
   filters: {
@@ -70,6 +77,7 @@ export default {
       vm.axios.get('https://api.github.com/users/' + vm.userName + '/repos')
         .then(response => {
           vm.userData = response.data
+          vm.total = vm.userData.length;
           vm.profile.image = vm.userData[0].owner.avatar_url
           vm.profile.name = vm.userData[0].owner.login
           vm.getLang()
@@ -88,6 +96,8 @@ export default {
     },
     getLang () {
       let vm = this
+      vm.repoLanguage.length = 0;
+      vm.lang.length = 0;
       vm.userData.forEach(repo => {
         vm.axios.get('https://api.github.com/repos/' + vm.userName + '/' + repo.name + '/languages').then((languages) => {
           vm.repoLanguage.push(Object.keys(languages.data))
@@ -113,7 +123,7 @@ export default {
       })
     },
     // eslint-disable-next-line
-    convertDate: date => moment(date).format('LLL')
+    convertDate: date => moment(date).format('LLL'),
   }
 }
 </script>
