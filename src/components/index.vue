@@ -96,12 +96,19 @@ export default {
             lang.forEach(l => {
               fullLanguage = fullLanguage + l + ', '
             })
-            console.log(fullLanguage)
+            
             vm.lang.push(fullLanguage)
             fullLanguage = ''
           })
         }).catch((error) => {
-          console.log(error)
+          swal({
+            title: 'Oops!',
+            text: error,
+            icon: 'error',
+            button: 'Ok'
+          }).then(() => {
+            location.reload()
+          })
         })
       })
     },
