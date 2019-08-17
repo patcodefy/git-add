@@ -1,4 +1,4 @@
-A web app that gather and displays repository information for a specific user. It interacts with github public API. [Give it a try here](https://compassionate-engelbart-8bbbb9.netlify.com/).
+A web app that gather and displays repository information for a specific user. It interacts with github public API. [Give it a try here](https://git-dot.netlify.com/).
 
 The technologies used are:  
 >[Vue.js](https://vuejs.org/) and 
