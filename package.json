@@ -18,13 +18,13 @@
     "vue": "^2.6.10",
     "vue-devtools": "^5.1.0",
     "webpack": "^4.35.0",
-    "webpack-cli": "^3.3.5",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.7.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.8.0",
-    "@vue/cli-service": "^3.8.0",
+    "@vue/cli-service": "^5.0.8",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
